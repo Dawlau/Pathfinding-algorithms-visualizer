@@ -8,6 +8,7 @@ def setup():
     screen = pygame.display.set_mode((constants.width, constants.height))
     screen.fill(colors.white)
     pygame.display.set_caption("Path finding algorithms")
+
     pygame.display.set_icon(pygame.image.load("images/icon.png"))
 
     pygame.display.flip()

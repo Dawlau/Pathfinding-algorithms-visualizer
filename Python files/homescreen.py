@@ -56,5 +56,5 @@ class HomeScreen:
                     clickCoords = pygame.mouse.get_pos()
                     if self.inRect(self.Start, clickCoords):
                         print("Start")
-                    else:
+                    elif self.inRect(self.HowToUse, clickCoords):
                         print("How to use")
