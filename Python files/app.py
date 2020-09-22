@@ -42,13 +42,15 @@ class App:
         root.geometry("300x50")
         root.title("")
 
+
+        label = Label(root, text="Choose start and stop cells.")
+        label.pack()
+
         def end():
             root.destroy()
 
-        w = Label(root, text="Choose start and stop cells.")
-        b = Button(root, text = "Ok", command = end)
-        w.pack()
-        b.pack()
+        button = Button(root, text = "Ok", command = end)
+        button.pack()
 
         root.mainloop()
 
