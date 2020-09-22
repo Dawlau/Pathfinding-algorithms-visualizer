@@ -33,16 +33,13 @@ class HomeScreen:
 
 
 
-    @staticmethod
-    def inRect(rect, coords):
-        return rect.left <= coords[0] <= rect.right and rect.top <= coords[1] <= rect.bottom
-
-
 
     def play(self, screen):
 
-        import pygame, sys
+        import pygame, sys, tkinter, utilities
+        from HowToUse import HowToUse
         
+
         self.render(screen)
 
         while True:
@@ -54,7 +51,7 @@ class HomeScreen:
                 if event.type == pygame.MOUSEBUTTONDOWN:
 
                     clickCoords = pygame.mouse.get_pos()
-                    if self.inRect(self.Start, clickCoords):
-                        print("Start")
-                    elif self.inRect(self.HowToUse, clickCoords):
-                        print("How to use")
+                    if utilities.inRect(self.Start, clickCoords):
+                        return
+                    elif utilities.inRect(self.HowToUse, clickCoords):
+                        howtouse = HowToUse()
