@@ -1,3 +1,5 @@
+#! /usr/bin/python3
+
 import graphics
 import pygame
 import sys
@@ -14,16 +16,9 @@ def main():
     homescreen = HomeScreen()
     homescreen.play(graphics.screen)
 
-    app = App()
+    app = App(graphics.screen)
     while True:
-
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT or pygame.key.get_pressed()[pygame.K_q]: # Quit
-                pygame.quit()
-                sys.exit()
-
         app.run(graphics.screen)
-
         pygame.display.flip() # call it once to avoid flickering
 
 main()

@@ -48,7 +48,7 @@ class HomeScreen:
                 if event.type == pygame.QUIT or pygame.key.get_pressed()[pygame.K_q]: # Quit
                     pygame.quit()
                     sys.exit()
-                if event.type == pygame.MOUSEBUTTONDOWN:
+                elif event.type == pygame.MOUSEBUTTONDOWN:
 
                     clickCoords = pygame.mouse.get_pos()
                     if utilities.inRect(self.Start, clickCoords):

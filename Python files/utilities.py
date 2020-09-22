@@ -30,10 +30,10 @@ def pathToHowToUse():
 # converts matriceal coordinates to cartesian coordinates
 def MatricealToCartesian(coords):
     from cell import side
-    return (coords[0] * side, coords[1] * side)
+    return (coords[1] * side, coords[0] * side)
 
 
 # converts cartesian coordinates to matriceal coordinates
 def CartesianToMatriceal(coords):
     from cell import side
-    return (coords[0] // side, coords[1] // side)
+    return (coords[1] // side, coords[0] // side)
