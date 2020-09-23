@@ -14,6 +14,7 @@ def setup():
     pygame.display.flip()
 
 
+
 def initFonts():
 
     import pygame
@@ -24,8 +25,32 @@ def initFonts():
 
     CMMS30 = pygame.font.SysFont("Comic Sans MS", 30)
 
+
+
 def createText(screen, font, text, color, position):
     renderText = font.render(text, True, color)
     Rect = screen.blit(renderText, position)
 
     return Rect
+
+
+
+def okMessageBox(text):
+
+    import tkinter as tk
+
+    root = tk.Tk()
+    root.geometry("300x60")
+    root.title("")
+
+
+    label = tk.Label(root, text = text)
+    label.pack()
+
+    def end():
+        root.destroy()
+
+    button = tk.Button(root, text = "Ok", command = end)
+    button.pack()
+
+    root.mainloop()

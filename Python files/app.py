@@ -1,9 +1,8 @@
-import copy
 from cell import Cell, side
 from constants import width, height
 import graphics
-from tkinter import *
-from tkinter import messagebox
+
+
 
 class App:
 
@@ -11,7 +10,6 @@ class App:
     cols = width // side
     
     def __init__(self, screen):
-        import utilities
         self.reset(screen)
 
 
@@ -36,26 +34,6 @@ class App:
 
 
 
-    def okMessageBox(self, text):
-
-        self.openmessagebox = False
-
-        root = Tk()
-        root.geometry("300x50")
-        root.title("")
-
-
-        label = Label(root, text = text)
-        label.pack()
-
-        def end():
-            root.destroy()
-
-        button = Button(root, text = "Ok", command = end)
-        button.pack()
-
-        root.mainloop()
-
     
 
     def runStage1(self, event):
@@ -64,7 +42,8 @@ class App:
         from colors import red
 
         if self.openmessagebox:
-            self.okMessageBox("Choose start and stop cells.")
+            graphics.okMessageBox("Choose start and stop cells.")
+            self.openmessagebox = False
             
 
         if event.type == pygame.MOUSEBUTTONDOWN:
@@ -93,7 +72,7 @@ class App:
         from colors import black, red
 
         if self.openmessagebox:
-            self.okMessageBox("Build walls")
+            graphics.okMessageBox("Build walls\nPress spacebar when you are done")
             self.openmessagebox = False
 
         if event.type == pygame.KEYDOWN and pygame.key.get_pressed()[pygame.K_SPACE]:
