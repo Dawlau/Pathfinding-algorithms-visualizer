@@ -1,5 +1,40 @@
 from constants import moveRow, moveCol
 
+def buildPath(From, grid, start, stop):
+
+    import colors
+
+    Stack = []
+    cell = From[stop[0]][stop[1]]
+    prev = stop
+
+    while cell != start:
+
+        direction = None
+        for dir in range(len(moveRow)):
+            if (cell[0] + moveRow[dir], cell[1] + moveCol[dir]) == prev:
+                if dir == 0:
+                    direction = "up"
+                elif dir == 1:
+                    direction = "right"
+                elif dir == 2:
+                    direction = "down"
+                else:
+                    direction = "left"
+
+        Stack.append((cell, direction))
+
+        prev = cell
+        cell = From[cell[0]][cell[1]]
+
+    while len(Stack):
+        cell, direction = Stack[-1]
+        row, col = cell
+        Stack.pop()
+        grid[row][col].changeColor(colors.white)
+        grid[row][col].addArrow(direction)
+
+
 
 def Dijkstra():
     print("Dijkstra")
@@ -39,18 +74,12 @@ def Bfs(grid, start, stop, showSteps):
                 From[newRow][newCol] = (row, col)
                 Deque.append((newRow, newCol))
 
-    Stack = []
-    cell = stop
+    if not seen[stop[0]][stop[1]]:
+        return 0
 
-    while cell is not None:
-        Stack.append(cell)
-        cell = From[cell[0]][cell[1]]
+    buildPath(From, grid, start, stop)
 
-    while len(Stack):
-        row, col = Stack[-1]
-        Stack.pop()
-        grid[row][col].changeColor(colors.yellow)
-
+    return 1
 
 
 def Dfs():
@@ -59,4 +88,8 @@ def Dfs():
 
 
 def Astar():
+    pass
+
+
+def GreedyBestfs():
     pass

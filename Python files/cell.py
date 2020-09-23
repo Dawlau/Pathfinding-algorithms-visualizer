@@ -32,3 +32,22 @@ class Cell:
                                                  (side - 1, side - 1)
                                                 )
                                     )
+
+    
+    def addArrow(self, direction):
+
+        import pathlib, utilities, pygame
+
+        path = utilities.rootDir().joinpath("images")
+        if direction == "left":
+            path = path.joinpath("leftarrow.png")
+        elif direction == "right":
+            path = path.joinpath("rightarrow.png")
+        elif direction == "up":
+            path = path.joinpath("uparrow.png")
+        else:
+            path = path.joinpath("downarrow.png")
+
+        path = str(path)
+        image = pygame.image.load(path)
+        self.screen.blit(image, utilities.MatricealToCartesian((self.row, self.col)))

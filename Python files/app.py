@@ -37,9 +37,11 @@ class App:
 
     
 
-    def runStage1(self, event):
+    def runStage1(self, screen, event):
 
         import pygame, utilities
+        from startCell import StartCell
+        from stopCell import StopCell
         from colors import red
 
         if self.openmessagebox:
@@ -58,8 +60,10 @@ class App:
 
             if self.start is None:
                 self.start = (row, col)
+                self.grid[row][col] = StartCell(screen, row, col)
             elif self.stop is None:
                 self.stop = (row, col)
+                self.grid[row][col] = StopCell(screen, row, col)
         
         if self.start is not None and self.stop is not None:
             self.state = 2
@@ -108,15 +112,20 @@ class App:
             algorithm, showSteps = graphics.chooseAlgoWindow()
             self.openmessagebox = False
 
-
+        status = None
         if algorithm == "Dijkstra":
-            algorithms.Dijkstra()
+            status = algorithms.Dijkstra()
         elif algorithm == "Bfs":
-            algorithms.Bfs(self.grid, self.start, self.stop, showSteps)
+            status = algorithms.Bfs(self.grid, self.start, self.stop, showSteps)
         elif algorithm == "Dfs":
-            algorithms.Dfs()
+            status = algorithms.Dfs()
         elif algorithm == "A*":
-            algorithms.Astar()
+            status = algorithms.Astar()
+        elif algorithm == "Greedy Best-First Search":
+            status = algorithms.GreedyBestfs()
+
+        if status == 0: # no path
+            graphics.okMessageBox("There is no path")
 
         self.state = 4
         self.openmessagebox = True
@@ -147,7 +156,7 @@ class App:
                 sys.exit()
 
             if self.state == 1:
-                self.runStage1(event)
+                self.runStage1(screen, event)
             elif self.state == 2:
                 self.runStage2(event)
             elif self.state == 3:
