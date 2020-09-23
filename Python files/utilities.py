@@ -22,9 +22,15 @@ def parseFile(file):
 
 
 # returns absolute path ot HowToUse.txt, relative to a Python file
-def pathToHowToUse():
+def rootDir():
     import pathlib
-    return pathlib.Path(__file__).parent.parent.joinpath("HowToUse.txt")
+    return pathlib.Path(__file__).parent.parent
+
+
+
+def fromRootFile(file):
+    import pathlib
+    return rootDir().joinpath(file)
 
 
 # converts matriceal coordinates to cartesian coordinates

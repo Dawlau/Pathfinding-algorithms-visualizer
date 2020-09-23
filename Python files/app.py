@@ -15,7 +15,7 @@ class App:
 
 
     def reset(self, screen):
-        import colors
+        import colors, pygame
 
         self.start = None
         self.stop = None
@@ -32,6 +32,7 @@ class App:
             for col in range(self.cols):
                 self.grid[row][col] = Cell(graphics.screen, row, col)
 
+        pygame.display.flip() # call it once to avoid flickering
 
 
     
@@ -77,6 +78,7 @@ class App:
 
         if event.type == pygame.KEYDOWN and pygame.key.get_pressed()[pygame.K_SPACE]:
             self.state = 3
+            self.openmessagebox = True
             return
 
         elif event.type == pygame.MOUSEBUTTONDOWN and self.MouseEvent == 0:
@@ -96,8 +98,18 @@ class App:
             
 
 
+
+
     def runStage3(self):
+
+        if self.openmessagebox:
+            algorithm, showSteps = graphics.chooseAlgoWindow()
+            self.openmessagebox = False
+            print(algorithm, showSteps)
+
+
         self.state = 4
+        self.openmessagebox = True
 
 
 

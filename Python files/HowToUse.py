@@ -42,4 +42,4 @@ class HowToUse:
         txt["yscrollcommand"] = yscrollbar.set
 
 
-        txt.insert(END, utilities.parseFile(utilities.pathToHowToUse()))
+        txt.insert(END, utilities.parseFile(utilities.fromRootFile("HowToUse.txt")))
