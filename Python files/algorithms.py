@@ -49,7 +49,7 @@ def Bfs(grid, start, stop, showSteps):
     while len(Stack):
         row, col = Stack[-1]
         Stack.pop()
-        grid[row][col].changeColor(colors.red)
+        grid[row][col].changeColor(colors.yellow)
 
 
 
