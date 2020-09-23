@@ -43,3 +43,9 @@ def MatricealToCartesian(coords):
 def CartesianToMatriceal(coords):
     from cell import side
     return (coords[1] // side, coords[0] // side)
+
+
+
+# check if specified row and col are in grid
+def inGrid(grid, row, col):
+    return 0 <= row < len(grid) and 0 <= col < len(grid[0])

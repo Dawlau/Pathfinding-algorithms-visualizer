@@ -51,7 +51,7 @@ class App:
             clickCoords = pygame.mouse.get_pos()
             row, col = utilities.CartesianToMatriceal(clickCoords)
 
-            if self.grid[row][col].color is red:
+            if self.grid[row][col].color == red:
                 return
 
             self.grid[row][col].changeColor(red)
@@ -89,7 +89,7 @@ class App:
 
             row, col = utilities.CartesianToMatriceal(clickCoords)
 
-            if self.grid[row][col].color is black or self.grid[row][col].color is red:
+            if self.grid[row][col].color == black or self.grid[row][col].color == red:
                 return
 
             self.grid[row][col].changeColor(black)
@@ -102,11 +102,21 @@ class App:
 
     def runStage3(self):
 
+        import algorithms
+
         if self.openmessagebox:
             algorithm, showSteps = graphics.chooseAlgoWindow()
             self.openmessagebox = False
-            print(algorithm, showSteps)
 
+
+        if algorithm == "Dijkstra":
+            algorithms.Dijkstra()
+        elif algorithm == "Bfs":
+            algorithms.Bfs(self.grid, self.start, self.stop, showSteps)
+        elif algorithm == "Dfs":
+            algorithms.Dfs()
+        elif algorithm == "A*":
+            algorithms.Astar()
 
         self.state = 4
         self.openmessagebox = True
@@ -122,8 +132,9 @@ class App:
         if message == "Quit":
             pygame.quit()
             sys.exit()
-        else:
+        elif message == "Restart":
             self.reset(screen)
+
 
 
     def run(self, screen):
