@@ -16,6 +16,7 @@ def main():
     homescreen = HomeScreen()
     homescreen.play(graphics.screen)
 
+
     app = App(graphics.screen)
     while True:
         app.run(graphics.screen)
