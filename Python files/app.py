@@ -97,18 +97,26 @@ class App:
 
 
     def runStage3(self):
-        pass
+        self.state = 4
 
 
 
-    def runStage4(self):
-        pass
+    def runStage4(self, screen):
 
+        import pygame, sys
+
+        message = graphics.endMessageBox()
+
+        if message == "Quit":
+            pygame.quit()
+            sys.exit()
+        else:
+            self.reset(screen)
 
 
     def run(self, screen):
 
-        import pygame
+        import pygame, sys
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT or pygame.key.get_pressed()[pygame.K_q]: # Quit
@@ -122,4 +130,4 @@ class App:
             elif self.state == 3:
                 self.runStage3()
             elif self.state == 4:
-                self.runStage4()
+                self.runStage4(screen)
