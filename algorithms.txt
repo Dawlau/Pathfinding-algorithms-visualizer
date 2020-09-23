@@ -2,4 +2,3 @@ Bfs
 Dfs
 A*
 Greedy Best-First Search
-Dijkstra

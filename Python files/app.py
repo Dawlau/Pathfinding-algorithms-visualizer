@@ -113,9 +113,8 @@ class App:
             self.openmessagebox = False
 
         status = None
-        if algorithm == "Dijkstra":
-            status = algorithms.Dijkstra()
-        elif algorithm == "Bfs":
+
+        if algorithm == "Bfs":
             status = algorithms.Bfs(self.grid, self.start, self.stop, showSteps)
         elif algorithm == "Dfs":
             status = algorithms.Dfs(self.grid, self.start, self.stop, showSteps)
@@ -126,6 +125,8 @@ class App:
 
         if status == 0: # no path
             graphics.okMessageBox("There is no path")
+        else:
+            graphics.okMessageBox("Path found!")
 
         self.state = 4
         self.openmessagebox = True

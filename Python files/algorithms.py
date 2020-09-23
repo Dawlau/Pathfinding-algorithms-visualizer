@@ -2,7 +2,7 @@ from constants import moveRow, moveCol, delay
 
 def buildPath(From, grid, start, stop):
 
-    import colors
+    import colors, pygame
 
     Stack = []
     cell = From[stop[0]][stop[1]]
@@ -34,11 +34,7 @@ def buildPath(From, grid, start, stop):
         grid[row][col].changeColor(colors.white)
         grid[row][col].addArrow(direction)
 
-
-
-def Dijkstra():
-    print("Dijkstra")
-
+    pygame.display.flip()
 
 
 def Bfs(grid, start, stop, showSteps):
@@ -130,7 +126,12 @@ def Dfs(grid, start, stop, showSteps):
                     Stack.clear()
                     break
 
+    if not seen[stop[0]][stop[1]]:
+        return 0
+
     buildPath(From, grid, start, stop)
+
+    return 1
 
 
 def Astar():
