@@ -4,3 +4,5 @@ selectStartStop = "Select 2 squares"
 
 moveRow = [-1, 0, 1, 0]
 moveCol = [0, 1, 0, -1]
+
+delay = 0.005

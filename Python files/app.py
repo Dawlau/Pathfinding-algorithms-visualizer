@@ -93,7 +93,7 @@ class App:
 
             row, col = utilities.CartesianToMatriceal(clickCoords)
 
-            if self.grid[row][col].color == black or self.grid[row][col].color == red:
+            if self.grid[row][col].color == black or (row, col) == self.start or (row, col) == self.stop:
                 return
 
             self.grid[row][col].changeColor(black)
@@ -118,7 +118,7 @@ class App:
         elif algorithm == "Bfs":
             status = algorithms.Bfs(self.grid, self.start, self.stop, showSteps)
         elif algorithm == "Dfs":
-            status = algorithms.Dfs()
+            status = algorithms.Dfs(self.grid, self.start, self.stop, showSteps)
         elif algorithm == "A*":
             status = algorithms.Astar()
         elif algorithm == "Greedy Best-First Search":

@@ -15,7 +15,6 @@ def main():
     graphics.setup()
     graphics.initFonts()
 
-
     homescreen = HomeScreen()
     homescreen.play(graphics.screen)
 

@@ -58,34 +58,34 @@ def okMessageBox(text):
 
 def endMessageBox():
 
-    from functools import partial
-
     root = Tk()
     root.geometry("300x60")
     root.title("Done")
 
 
-    message = [None]
+    message = None
 
-    def quit(message):
+    def quit():
 
-        message[0] = "Quit"
+        nonlocal message
+        message = "Quit"
         root.destroy()
 
-    def restart(message):
+    def restart():
 
-        message[0] = "Restart"
+        nonlocal message
+        message = "Restart"
         root.destroy()
 
-    buttonQuit = Button(root, text = "Quit", command = partial(quit, message))
+    buttonQuit = Button(root, text = "Quit", command = quit)
     buttonQuit.pack()
 
-    buttonRestart = Button(root, text = "Restart", command = partial(restart, message))
+    buttonRestart = Button(root, text = "Restart", command = restart)
     buttonRestart.pack()
 
     root.mainloop()
 
-    return message[0]
+    return message
 
 
 

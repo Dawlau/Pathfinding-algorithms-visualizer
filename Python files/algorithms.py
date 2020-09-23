@@ -1,4 +1,4 @@
-from constants import moveRow, moveCol
+from constants import moveRow, moveCol, delay
 
 def buildPath(From, grid, start, stop):
 
@@ -44,7 +44,7 @@ def Dijkstra():
 def Bfs(grid, start, stop, showSteps):
 
     from collections import deque
-    import colors, utilities
+    import colors, utilities, time, pygame
 
     rows = len(grid)
     cols = len(grid[0])
@@ -65,14 +65,23 @@ def Bfs(grid, start, stop, showSteps):
 
         row, col = Deque.popleft()
 
+        if showSteps and (row, col) != start and (row, col) != stop:
+            grid[row][col].changeColor(colors.green)
+            pygame.display.flip()
+            time.sleep(delay)
+
         for dir in range(len(moveRow)):
             newRow = row + moveRow[dir]
             newCol = col + moveCol[dir]
 
-            if utilities.inGrid(grid, newRow, newCol) and not seen[newRow][newCol] and grid[newRow][newCol].color is not colors.black:
+            if utilities.inGrid(grid, newRow, newCol) and not seen[newRow][newCol] and grid[newRow][newCol].color != colors.black:
                 seen[newRow][newCol] = True
                 From[newRow][newCol] = (row, col)
                 Deque.append((newRow, newCol))
+
+                if (newRow, newCol) == stop:
+                    Deque.clear()
+                    break
 
     if not seen[stop[0]][stop[1]]:
         return 0
@@ -82,9 +91,46 @@ def Bfs(grid, start, stop, showSteps):
     return 1
 
 
-def Dfs():
-    pass
+def Dfs(grid, start, stop, showSteps):
 
+    import utilities, colors, pygame, time
+
+    rows = len(grid)
+    cols = len(grid[0])
+    
+    seen = [] * rows
+    From = [] * rows
+
+    for row in range(rows):
+        seen.append([False] * cols)
+        From.append([None] * cols)
+
+    Stack = []
+    Stack.append(start)
+    seen[start[0]][start[1]] = True
+
+    while len(Stack):
+        row, col = Stack.pop()
+
+        if showSteps and (row, col) != start and (row, col) != stop:
+            grid[row][col].changeColor(colors.green)
+            pygame.display.flip()
+            time.sleep(delay)
+
+        for dir in range(len(moveRow)):
+            newRow = row + moveRow[dir]
+            newCol = col + moveCol[dir]
+
+            if utilities.inGrid(grid, newRow, newCol) and not seen[newRow][newCol] and grid[newRow][newCol].color != colors.black:
+                seen[newRow][newCol] = True
+                From[newRow][newCol] = (row, col)
+                Stack.append((newRow, newCol))
+
+                if (newRow, newCol) == stop:
+                    Stack.clear()
+                    break
+
+    buildPath(From, grid, start, stop)
 
 
 def Astar():
