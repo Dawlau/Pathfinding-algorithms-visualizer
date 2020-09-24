@@ -21,7 +21,8 @@ def parseFile(file):
     return text
 
 
-# returns absolute path ot HowToUse.txt, relative to a Python file
+
+# returns absolute path of root Directory, relative to a Python file
 def rootDir():
     import pathlib
     return pathlib.Path(__file__).parent.parent
@@ -31,6 +32,7 @@ def rootDir():
 def fromRootFile(file):
     import pathlib
     return rootDir().joinpath(file)
+
 
 
 # converts matriceal coordinates to cartesian coordinates
@@ -52,5 +54,6 @@ def inGrid(grid, row, col):
 
 
 
+# returns the manhattan distance between A and B
 def ManhattanDistance(A, B):
     return abs(A[1] - B[1]) + abs(A[0] - B[0])

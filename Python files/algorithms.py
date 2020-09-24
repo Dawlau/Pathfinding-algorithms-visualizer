@@ -150,8 +150,70 @@ def g(cell, start):
 
 
 
-def Astar():
-    pass
+def Astar(grid, start, stop, showSteps):
+    import utilities, colors, pygame, time
+
+    rows = len(grid)
+    cols = len(grid[0])
+    
+    seen = [] * rows
+    From = [] * rows
+
+    for row in range(rows):
+        seen.append([False] * cols)
+        From.append([None] * cols)
+
+
+    f = lambda cell, stop : g(cell, start) + h(cell, stop)
+
+    
+    import heapq as hp
+
+    heap = []
+    hp.heappush(
+               heap, 
+                (
+                   f(start, stop),
+                   start
+                )
+              )
+
+    while len(heap):
+
+        heuristic, cell = hp.heappop(heap)
+        row, col = cell
+
+        if showSteps and cell != stop and cell != start:
+            grid[row][col].changeColor(colors.green)
+            pygame.display.flip()
+            time.sleep(delay)
+
+        for dir in range(len(moveRow)):
+            newRow = row + moveRow[dir]
+            newCol = col + moveCol[dir]
+
+            if utilities.inGrid(grid, newRow, newCol) and grid[newRow][newCol].color != colors.black and not seen[newRow][newCol]:
+                seen[newRow][newCol] = True
+                From[newRow][newCol] = (row, col)
+                hp.heappush(
+                            heap,
+                            (
+                                f((newRow, newCol), stop),
+                                (newRow, newCol)
+                            )
+                          )
+
+                if (newRow, newCol) == stop:
+                    heap.clear()
+                    break
+
+
+    if not seen[stop[0]][stop[1]]:
+        return 0
+
+    buildPath(From, grid, start, stop)
+
+    return 1
 
 
 
