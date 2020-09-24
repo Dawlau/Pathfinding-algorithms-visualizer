@@ -119,9 +119,9 @@ class App:
         elif algorithm == "Dfs":
             status = algorithms.Dfs(self.grid, self.start, self.stop, showSteps)
         elif algorithm == "A*":
-            status = algorithms.Astar()
+            status = algorithms.Astar(self.grid, self.start, self.stop, showSteps)
         elif algorithm == "Greedy Best-First Search":
-            status = algorithms.GreedyBestfs()
+            status = algorithms.GreedyBestfs(self.grid, self.start, self.stop, showSteps)
 
         if status == 0: # no path
             graphics.okMessageBox("There is no path")

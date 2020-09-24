@@ -49,3 +49,8 @@ def CartesianToMatriceal(coords):
 # check if specified row and col are in grid
 def inGrid(grid, row, col):
     return 0 <= row < len(grid) and 0 <= col < len(grid[0])
+
+
+
+def ManhattanDistance(A, B):
+    return abs(A[1] - B[1]) + abs(A[0] - B[0])
