@@ -10,7 +10,7 @@ def inRect(rect, coords):
 def parseFile(file):
 
     with open(file, "r") as fin:
-        
+
         line = fin.readline()
         text = line
 
@@ -55,5 +55,6 @@ def inGrid(grid, row, col):
 
 
 # returns the manhattan distance between A and B
-def ManhattanDistance(A, B):
-    return abs(A[1] - B[1]) + abs(A[0] - B[0])
+def EucledianDistance(A, B):
+    import math
+    return math.sqrt((B[0] - A[0]) * (B[0] - A[0]) + (B[1] - A[1]) * (B[1] - A[1]))

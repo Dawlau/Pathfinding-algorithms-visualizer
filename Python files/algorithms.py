@@ -95,7 +95,7 @@ def Dfs(grid, start, stop, showSteps):
 
     rows = len(grid)
     cols = len(grid[0])
-    
+
     seen = [] * rows
     From = [] * rows
 
@@ -139,13 +139,13 @@ def Dfs(grid, start, stop, showSteps):
 
 def h(cell, stop):
     import utilities
-    return utilities.ManhattanDistance(cell, stop)
+    return utilities.EucledianDistance(cell, stop)
 
 
 
 def g(cell, start):
     import utilities
-    return utilities.ManhattanDistance(cell, start)
+    return utilities.EucledianDistance(cell, start)
 
 
 
@@ -155,7 +155,7 @@ def Astar(grid, start, stop, showSteps):
 
     rows = len(grid)
     cols = len(grid[0])
-    
+
     seen = [] * rows
     From = [] * rows
 
@@ -166,12 +166,12 @@ def Astar(grid, start, stop, showSteps):
 
     f = lambda cell, stop : g(cell, start) + h(cell, stop)
 
-    
+
     import heapq as hp
 
     heap = []
     hp.heappush(
-               heap, 
+               heap,
                 (
                    f(start, stop),
                    start
@@ -224,7 +224,7 @@ def GreedyBestfs(grid, start, stop, showSteps):
 
     rows = len(grid)
     cols = len(grid[0])
-    
+
     seen = [] * rows
     From = [] * rows
 
@@ -235,12 +235,12 @@ def GreedyBestfs(grid, start, stop, showSteps):
 
     f = lambda cell, stop : h(cell, stop)
 
-    
+
     import heapq as hp
 
     heap = []
     hp.heappush(
-               heap, 
+               heap,
                 (
                    f(start, stop),
                    start
