@@ -12,17 +12,17 @@ class HomeScreen:
 
         width, height = graphics.CMMS30.size("How to use")
         self.HowToUse = graphics.createText(
-                                            screen, 
-                                            graphics.CMMS30, 
-                                            "How to Use", 
-                                            colors.black, 
+                                            screen,
+                                            graphics.CMMS30,
+                                            "How to Use",
+                                            colors.black,
                                             (constants.width // 2 - width // 2, constants.height // 2 - height // 2)
                                            )
 
 
         width, height = graphics.CMMS30.size("Start")
         self.Start = graphics.createText(
-                                         screen, 
+                                         screen,
                                          graphics.CMMS30,
                                          "Start",
                                          colors.black,
@@ -38,18 +38,16 @@ class HomeScreen:
 
         import pygame, sys, tkinter, utilities
         from HowToUse import HowToUse
-        
+
 
         self.render(screen)
 
         while True:
-
             for event in pygame.event.get():
                 if event.type is pygame.QUIT or pygame.key.get_pressed()[pygame.K_q]: # Quit
                     pygame.quit()
                     sys.exit()
-                elif event.type is pygame.MOUSEBUTTONDOWN:
-
+                elif event.type == pygame.MOUSEBUTTONUP:
                     clickCoords = pygame.mouse.get_pos()
                     if utilities.inRect(self.Start, clickCoords):
                         return

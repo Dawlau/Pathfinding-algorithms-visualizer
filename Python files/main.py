@@ -24,4 +24,5 @@ def main():
         app.run(graphics.screen)
         pygame.display.flip() # call it once to avoid flickering
 
-main()
+if __name__ == "__main__":
+    main()
