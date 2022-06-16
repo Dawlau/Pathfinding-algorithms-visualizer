@@ -18,6 +18,11 @@ This app supports visualizing 4 algorithms:
 In the home screen you have two buttons: "Start" and "How to use".
 "Start" button starts the app, while by pressing "How to use" button a window with instructions pops-up.
 
+## Demo images
+
+![alt-text](demo_images/pre_solution.png)
+![alt-text](demo_images/solution.png)
+
 
 ## Requirements
 
@@ -39,6 +44,9 @@ The installation varies from distribution to distribution. Hopefully the links f
 
 3.Run the command "./run.sh"
 
+## Demo video
+
+https://youtu.be/0kW3_m82UUE
 
 ## Final notes
 

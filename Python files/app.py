@@ -8,7 +8,7 @@ class App:
 
     rows = height // side
     cols = width // side
-    
+
     def __init__(self, screen):
         self.reset(screen)
 
@@ -35,7 +35,7 @@ class App:
         pygame.display.flip() # call it once to avoid flickering
 
 
-    
+
 
     def runStage1(self, screen, event):
 
@@ -47,7 +47,7 @@ class App:
         if self.openmessagebox:
             graphics.okMessageBox("Choose start and stop cells.")
             self.openmessagebox = False
-            
+
 
         if event.type == pygame.MOUSEBUTTONDOWN:
             clickCoords = pygame.mouse.get_pos()
@@ -64,13 +64,14 @@ class App:
             elif self.stop is None:
                 self.stop = (row, col)
                 self.grid[row][col] = StopCell(screen, row, col)
-        
+                return
+
         if self.start is not None and self.stop is not None:
             self.state = 2
             self.openmessagebox = True
 
 
-    
+
     def runStage2(self, event):
 
         import pygame, utilities
@@ -87,7 +88,7 @@ class App:
 
         elif event.type == pygame.MOUSEBUTTONDOWN and self.MouseEvent == 0:
             self.MouseEvent += 1
-            
+
         elif event.type == pygame.MOUSEMOTION and self.MouseEvent == 1:
             clickCoords = event.pos
 
@@ -99,7 +100,7 @@ class App:
             self.grid[row][col].changeColor(black)
         elif event.type == pygame.MOUSEBUTTONUP and self.MouseEvent == 1:
             self.MouseEvent = 0
-            
+
 
 
 
